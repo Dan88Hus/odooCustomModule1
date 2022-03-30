@@ -1,0 +1,2 @@
+Scaffold command example:
+(odoo-env) dev@dev:/opt/odoo15/odoo$ ./odoo-bin scaffold library_app /opt/odoo15/odoo-custom-addons/

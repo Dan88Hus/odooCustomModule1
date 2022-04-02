@@ -1,0 +1,12 @@
+<!--
+<menuitem> element is an instruction to write a record on ir.ui.menu model
+this XML ID is required to define which menu will be submenu of this ID
+
+-->
+
+<odoo>
+<!--    Library App Menu -->
+    <menuitem id="menu_library" name="Library" />
+
+</odoo>
+

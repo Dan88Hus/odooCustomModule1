@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Library Management",
 
@@ -23,9 +22,8 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/library_security.xml',
+        'views/library_menu.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [
@@ -33,3 +31,4 @@
     # ],
     "application": True
 }
+# -*- coding: utf-8 -*-

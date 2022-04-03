@@ -9,6 +9,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="date_of_birth"/>
                         <field name="age"/>
                     </group>
                     <group>
@@ -17,6 +18,12 @@
                         <field name="active" invisible="True"/>
                     </group>
                 </sheet>
+                <!--chatter ekliyebilmemiz icin py faile da _inherit=mail.thread ekliyecegiz ki alanlar eklensin ve manifest te depends mail-->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
@@ -28,6 +35,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
+                <field name="date_of_birth"/>
                 <field name="age"/>
                 <field name="gender"/>
                 <field name="ref"/>
@@ -51,12 +59,17 @@
                 <separator/>
                 <!--separator makes AND operator between filters-->
                 <filter name="filter_female" string="Female" domain="[('gender','=','female')]"/>
-                <separator/>
-                <filter name="filter_kids" string="Kids" domain="[('age','&lt;=','5')]"/>
+                <!--<separator/> computed fields can be used as domain because computed field is not created on DB at the beginning-->
+                <!--<filter name="filter_kids" string="Kids" domain="[('age','&lt;=','5')]"/>-->
                 <!-- group tag let us have grouped-->
                 <group expand="0" string="Group By Gender">
                     <filter string="Gender" name="group_by_gender" context="{'group_by':'gender'}"/>
                 </group>
+                <!--sag panel, filteremeye yariyor, bunun icin keyword searchpanel-->
+                <searchpanel>
+                    <!--need to specify field name to group by-->
+                    <field name="gender" string="Gender" enable_counters="1" icon="fa-users" select="multi"/>
+                </searchpanel>
             </search>
         </field>
     </record>

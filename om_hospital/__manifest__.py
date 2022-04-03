@@ -14,13 +14,13 @@ Description
     'summary': 'Hospital Management System',
     'auto_install': False,
     'sequence': -100,
-    'depends': [
-    ],
+    'depends': ['mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/menu.xml',
         'views/patient_view.xml',
         'views/female_patient_view.xml',
+        'views/appointment_view.xml',
     ],
     'bootstrap': False,
     'assets': {

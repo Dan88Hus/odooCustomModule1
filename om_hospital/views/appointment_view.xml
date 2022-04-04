@@ -6,16 +6,46 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form>
+                <!--for statusbar we add header on top of form, to make clickable, options="{'clickable':1}"-->
+                <!--statusbar_visible keyword dunu kullanlarak hangi seceneklerin gorunup gorunmeyecegini belirtebiliriz-->
+                <header>
+                    <field name="state" widget="statusbar" nolabel="1"/>
+                </header>
                 <sheet>
+                    <!--for priority area-->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="priority" widget="priority" class="mr-3"/>
+                        </h1>
+                    </div>
                     <group>
                         <field name="patient_id"/>
-                        <field name="gender"/>
-                        <field name="booking_date"/>
+                        <!--  moved to page <field name="gender"/>-->
+                        <!--  moved to page <field name="booking_date"/>-->
                     </group>
                     <group>
                         <field name="appointment_time"/>
-
+                        <field name="ref"/>
+                        <button name="action_test" string="Test Button type Obj" type="object" class="oe_highlight"/>
+                        <!--button type obj will search for function of given name-->
+                        <button name="%(om_hospital.action_hospital_patient)d" help="HELP TEXT" string="Test Button type Action" type="action" class="oe_highlight" confirm="are you sure?"/>
+<!--                        confirm keyword u nu kullarak mesaj ekiliyebiliriz, help="string text-->
                     </group>
+                    <!-- Notebook form a ekliyecegimiz icin buraya yaziyoruz, and we can define any number of page tag-->
+                    <notebook>
+                        <!--name attr would be good for inheriting-->
+                        <page string="Prescription" name="prescription">
+                            <group>
+                                <field name="gender"/>
+                            </group>
+                            <field name="prescription" placeholder="Enter your Prescription"/>
+                        </page>
+                        <page string="Pharmacy" name="pharmacy">
+                            <group>
+                                <field name="booking_date"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
                 <!--chatter ekliyebilmemiz icin py faile da _inherit=mail.thread ekliyecegiz ki alanlar eklensin ve manifest te depends mail-->
                 <!--                <div class="oe_chatter">-->
@@ -36,6 +66,8 @@
                 <field name="patient_id"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
+                <field name="ref"/>
+                <field name="priority" widget="priority"/>
             </tree>
         </field>
     </record>
